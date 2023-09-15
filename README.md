@@ -18,10 +18,10 @@ This document serves as a comprehensive guide to the Grade Management Applicatio
 
 It has a mobile version for max 440px screens.
 
-![app](appImages\wEksjfY.png)
-![app](appImages\rPpBvpm.png)
-![app](appImages\BzXF63h.png)
-![app](appImages\2LY3eVZ.png)
+![Screenshot](wEksjfY.png)
+![Screenshot](rPpBvpm.png)
+![Screenshot](BzXF63h.png)
+![Screenshot](2LY3eVZ.png)
 
 ---
 
