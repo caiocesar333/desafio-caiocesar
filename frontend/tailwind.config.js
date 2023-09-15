@@ -24,6 +24,8 @@ export default {
       'geografia':'#C26719',
       'sociologia':'#9B19C2',
       'pint-text':'#FF5964',
+      'yellow-text':'#FFFF99',
+      'green-text':'#05FF00',
       'modal':'rgba(0, 0, 0, 0.5)',
       'biologia-modal':'#CC4090',
       'artes-modal':'#05A2C2',

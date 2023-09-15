@@ -14,7 +14,7 @@ function Titulo({ num }: Bimestre) {
     <div className='w-3/6 flex justify-between items-center mb-2'>
       <p>Bimestre {num}</p>
       <div onClick={() => setModalOpen(true)} className='bg-button-add text-background-primary 
-      font-bold p-2 w-52 text-center rounded-[12px] flex justify-center items-center gap-5 cursor-pointer'>
+      font-extrabold p-1 w-52 text-center rounded-[12px] flex justify-center items-center gap-5 cursor-pointer'>
         Lançar Nota
         <img  src={Plus}></img>
       </div>

@@ -47,7 +47,7 @@ function Bimestre({ num, data }: BimestreProps) {
                                 />
                             );
                         } else {
-                            return <Disciplina key={index} hidden={true} />;
+                            return <Disciplina key={index} hidden={true} nota={0}/>;
                         }
                     })}
                 </div>

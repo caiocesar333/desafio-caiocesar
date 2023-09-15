@@ -1,9 +1,14 @@
 import Trash from '../assets/Trash.svg'
+import Chart from '../assets/Chart.svg'
+import ChartYellow from '../assets/ChartYellow.svg'
+import ChartGreen from '../assets/ChartGreen.svg'
+import { useState } from 'react';
+
 
 interface Disciplina {
     id?: string;
     nome?: string;
-    nota?: number;
+    nota: number;
     hidden: boolean;
     criadoEm?: string;
 }
@@ -41,13 +46,30 @@ function Disciplina({ id, nome, nota, hidden, criadoEm }: Disciplina) {
         }
     };
 
+    const [svgColor, setSvgColor] = useState("");
+
+    const textColor = ()=>{
+        if(nota <= 6) { return ('text-pint-text')}
+        if(6 < nota && nota < 8) return ('text-yellow-text')
+        if(nota >= 8) return ('text-green-text')
+    }
+    const getSvgColor = () => {
+        if (nota <= 6) return Chart;
+        if (nota > 6 && nota < 8) return ChartYellow;
+        if (nota >= 8) return ChartGreen;
+    };
+
+
     return (
         !hidden ? (
             <div className="flex gap-5 justify-start items-start">
-                <div className={`w-40 h-32 rounded-normal flex flex-col ${getDiv()} p-2`}>
-                    <p>{nome}</p>
-                    <p className='text-sm'>{criadoEm}</p>
-                    <label className='text-sm' >{nota}</label>
+                <div className={`w-40 h-32 rounded-normal flex flex-col ${getDiv()} gap-1`}>
+                    <p className='pl-2 mt-2'>{nome}</p>
+                    <p className='text-xs pl-2 mb-4'>{criadoEm}</p>
+                    <div className='flex gap-1 w-40 bg-background-primary opacity-80 pl-5 items-center py-1 '>
+                        <img src={getSvgColor()}/>
+                        <label className={`text-base ${textColor()}`}  >{nota}</label>
+                    </div>
                 </div>
                 <img className='hover:cursor-pointer' src={Trash} onClick={handleDelete} ></img>
             </div>
@@ -58,7 +80,7 @@ function Disciplina({ id, nome, nota, hidden, criadoEm }: Disciplina) {
                     <p></p>
                     <label></label>
                 </div>
-                <img className='hover:cursor-pointer' src={Trash} style={{ visibility: 'hidden' }}/>
+                <img className='hover:cursor-pointer' src={Trash} style={{ visibility: 'hidden' }} />
             </div>
         )
     );
