@@ -2,8 +2,6 @@ import Trash from '../assets/Trash.svg'
 import Chart from '../assets/Chart.svg'
 import ChartYellow from '../assets/ChartYellow.svg'
 import ChartGreen from '../assets/ChartGreen.svg'
-import { useState } from 'react';
-
 
 interface Disciplina {
     id?: string;
@@ -45,8 +43,6 @@ function Disciplina({ id, nome, nota, hidden, criadoEm }: Disciplina) {
             console.log('Error:', error);
         }
     };
-
-    const [svgColor, setSvgColor] = useState("");
 
     const textColor = ()=>{
         if(nota <= 6) { return ('text-pint-text')}
