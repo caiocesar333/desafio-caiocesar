@@ -22,7 +22,7 @@ function ModalMobile({ isOpen, onClose, num }: Modal) {
             2: 'SEGUNDO',
             3: 'TERCEIRO',
             4: 'QUARTO',
-          };
+        };
         const currentDate = new Date().toISOString();
         const payload = {
             bimestre: bimestreMap[num],
@@ -82,7 +82,7 @@ function ModalMobile({ isOpen, onClose, num }: Modal) {
             }}
         >
             <div
-                className=""
+                className="flex justify-center items-center"
                 style={{
                     position: 'relative',
                     top: '50%',
@@ -92,28 +92,29 @@ function ModalMobile({ isOpen, onClose, num }: Modal) {
                     zIndex: 1001,
                 }}
             >
-                <div className="">
-                    <div className="">
-                        <p className="">Bimestre {num}</p>
-                        <img className="" onClick={onClose}src={X}/>
+                <div className="w-500 flex flex-col bg-background-primary">
+                    <div className="flex justify-between m-6">
+                        <p className="text-2xl">Bimestre {num}</p>
+                        <img className="hover:cursor-pointer" onClick={onClose} src={X} />
                     </div>
-                    <div className="">
-                        <p>Disciplina</p>
-                        <div className="">
-                            <button onClick={() => handleDisciplinaClick('Biologia')} className="">Biologia</button>
-                            <button onClick={() => handleDisciplinaClick('Artes')} className="">Artes</button>
-                            <button onClick={() => handleDisciplinaClick('Geografia')} className="">Geografia</button>
-                            <button onClick={() => handleDisciplinaClick('Sociologia')} className="">Sociologia</button>
+                    <div className="flex flex-col px-4">
+                        <p className="p-2">Disciplina</p>
+                        <div className=" grid grid-cols-2 grid-rows-2 gap-2 px-4">
+                            <button onClick={() => handleDisciplinaClick('Biologia')} className="w-22 h-16 rounded-normal bg-biologia-modal">Biologia</button>
+                            <button onClick={() => handleDisciplinaClick('Artes')} className="w-22 h-16 rounded-normal bg-artes-modal">Artes</button>
+                            <button onClick={() => handleDisciplinaClick('Geografia')} className="w-22 h-16 rounded-normal bg-geografia-modal">Geografia</button>
+                            <button onClick={() => handleDisciplinaClick('Sociologia')} className="w-22 h-16 rounded-normal bg-sociologia-modal">Sociologia</button>
                         </div>
                     </div>
-                    <div className="">
-                        <p className="">Nota</p>
-                        <div className="">
-                            <input onChange={handleInputChange} type="text" value={inputValue} className="" placeholder="6.0" />
+                    <div className="flex flex-col mx-3 gap-5 p-4">
+                        <p className="text-xs">Nota</p>
+                        <div className="flex">
+                            <input onChange={handleInputChange} type="text" value={inputValue} className="w-36 h-16 rounded-normal bg-transparent 
+                            border border-background-primary text-center opacity-40" placeholder="6.0" />
                         </div>
                     </div>
-                    <div className="">
-                        <button onClick={handleSubmit} className=''>Confirmar</button>
+                    <div className="flex justify-end m-5">
+                        <button onClick={handleSubmit} className='bg-button-add text-background-primary font-bold py-3 px-4 w-22 text-center rounded'>Confirmar</button>
                     </div>
                 </div>
             </div>
