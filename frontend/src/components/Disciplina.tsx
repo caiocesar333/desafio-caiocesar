@@ -22,14 +22,14 @@ function Disciplina({ nome, nota, hidden }: Disciplina) {
     };
 
     return (
-        !hidden ? (<div className="flex gap-1">
+        !hidden ? (<div className="flex gap-5">
             <div className={`w-40 h-36 rounded-normal flex flex-col ${getDiv()} p-2`}>
                 <p>{nome}</p>
                 <p>Data</p>
                 <label>{nota}</label>
             </div>
             <button className="w-1 h-1 bg-pint-text "></button>
-        </div>) : (<div className="flex gap-1">
+        </div>) : (<div className="flex gap-5">
             <div className={`w-40 h-36 rounded-normal flex flex-col ${getDiv()} p-2`}>
                 <p></p>
                 <p></p>
