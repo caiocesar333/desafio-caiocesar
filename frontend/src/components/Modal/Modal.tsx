@@ -8,7 +8,52 @@ interface Modal {
 
 function Modal({ isOpen, onClose, num }: Modal) {
 
-    const [inputValue, setInputValue] = useState(''); // State to hold the input value
+    const [inputValue, setInputValue] = useState('');
+    const [selectedDisciplina, setSelectedDisciplina] = useState('');  // <-- New state variable
+
+    const handleDisciplinaClick = (disciplina: string) => {
+        setSelectedDisciplina(disciplina);
+    };
+
+    const handleSubmit = async () => {
+        const bimestreMap: { [key: number]: string } = {
+            1: 'PRIMEIRO',
+            2: 'SEGUNDO',
+            3: 'TERCEIRO',
+            4: 'QUARTO',
+          };
+        const currentDate = new Date().toISOString();
+        const payload = {
+            bimestre: bimestreMap[num],
+            disciplina: selectedDisciplina,
+            nota: parseFloat(inputValue),
+            criadoEm: currentDate,
+            atualizadoEm: currentDate
+        };
+        try {
+            // POST the data to create new grade or PUT to update existing one.
+            // You would have logic here to decide whether to POST or PUT
+            const response = await fetch('http://localhost:3333/resultados', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Success:', data);
+                window.location.reload()
+            } else {
+                console.log('Failed:', response);
+                alert("Something went wrong :(")
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
+
     const handleInputChange = (e: any) => {
         const value = e.target.value;
         const regex = /^[0-9]*(\.[0-9]{0,1})?$/; // Regular expression to match numbers with one decimal place
@@ -54,10 +99,10 @@ function Modal({ isOpen, onClose, num }: Modal) {
                     <div className="flex flex-col m-5 gap-5">
                         <p>Disciplina</p>
                         <div className="flex gap-5">
-                            <button className="w-36 h-16 rounded-normal bg-biologia-modal">Biologia</button>
-                            <button className="w-36 h-16 rounded-normal bg-artes-modal">Artes</button>
-                            <button className="w-36 h-16 rounded-normal bg-geografia-modal">Geografia</button>
-                            <button className="w-36 h-16 rounded-normal bg-sociologia-modal">Sociologia</button>
+                            <button onClick={() => handleDisciplinaClick('Biologia')} className="w-36 h-16 rounded-normal bg-biologia-modal">Biologia</button>
+                            <button onClick={() => handleDisciplinaClick('Artes')} className="w-36 h-16 rounded-normal bg-artes-modal">Artes</button>
+                            <button onClick={() => handleDisciplinaClick('Geografia')} className="w-36 h-16 rounded-normal bg-geografia-modal">Geografia</button>
+                            <button onClick={() => handleDisciplinaClick('Sociologia')} className="w-36 h-16 rounded-normal bg-sociologia-modal">Sociologia</button>
                         </div>
                     </div>
                     <div className="flex flex-col m-5 gap-5">
@@ -67,7 +112,7 @@ function Modal({ isOpen, onClose, num }: Modal) {
                         </div>
                     </div>
                     <div className="flex justify-end m-5">
-                        <button className='bg-button-add text-background-primary font-bold p-2 w-40 text-center rounded'>Confirmar</button>
+                        <button onClick={handleSubmit} className='bg-button-add text-background-primary font-bold p-2 w-40 text-center rounded'>Confirmar</button>
                     </div>
                 </div>
             </div>
