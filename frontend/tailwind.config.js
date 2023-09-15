@@ -8,6 +8,7 @@ export default {
     extend: {
       spacing: {
         '128': '32rem',
+        "500":'500px',
         '700':'710px'
       }
     },
@@ -23,7 +24,12 @@ export default {
       'geografia':'#C26719',
       'sociologia':'#9B19C2',
       'pint-text':'#FF5964',
-      
+      'modal':'rgba(0, 0, 0, 0.5)',
+      'biologia-modal':'#CC4090',
+      'artes-modal':'#05A2C2',
+      'geografia-modal':'#C26719',
+      'sociologia-modal':'#9B19C2',
+      'nota-modal':'#424242',
     },
     borderRadius:{
       'normal': '20px',
