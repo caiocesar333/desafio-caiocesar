@@ -1,7 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import { Resultado } from '../model/Resultado';
 import { v4 as uuidv4 } from 'uuid';  // Importing uuid to generate unique IDs
+
 const app = express();
+app.use(cors());  // <-- CORS middleware
+app.use(express.json());  // Middleware to parse JSON bodies
 
 var resultados: Resultado[] = [];
 
@@ -30,9 +34,10 @@ app.post('/resultados', (req, res) => {
 
 // Read
 app.get('/resultados', (req, res) => {
-    res.status(200).json(resultados);
+  console.log("GET /resultados hit");
+  console.log("Current state of resultados: ", resultados);
+  res.status(200).json(resultados);
 });
-
 // Delete
 app.delete('/resultados/:id', (req, res) => {
     const { id } = req.params;

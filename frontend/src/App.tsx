@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import Bimestre from './components/Bimestre';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface FetchedData {
+  bimestre: string;
+  disciplina: string;
+  nota: number;
+  criadoEm: Date;
+  atualizadoEm: Date;
 }
 
-export default App
+function App() {
+  const [data, setData] = useState<FetchedData[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/resultados")
+      .then((response) => response.json())
+      .then((allData) => {
+        setData(allData);
+        console.log(allData)
+      })
+      .catch((error) => console.error("Error fetching data: ", error));
+  }, []);
+
+  return (
+    <div className='w-screen h-screen flex justify-center flex-col'>
+      {[1, 2, 3, 4].map(num => (
+        <Bimestre key={num} num={num} data={data} />
+      ))}
+    </div>
+  );
+}
+
+export default App;
