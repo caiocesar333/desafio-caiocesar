@@ -1,4 +1,5 @@
 import { useState } from "react";
+import X from '../../assets/X.svg'
 
 interface Modal {
     isOpen: boolean;
@@ -94,7 +95,7 @@ function Modal({ isOpen, onClose, num }: Modal) {
                 <div className="w-700 flex flex-col bg-background-primary">
                     <div className="flex justify-between m-5">
                         <p className="text-2xl">Bimestre {num}</p>
-                        <button onClick={onClose} className="bg-pint-text">Fechar</button>
+                        <img className="hover:cursor-pointer" onClick={onClose}src={X}/>
                     </div>
                     <div className="flex flex-col m-5 gap-5">
                         <p>Disciplina</p>

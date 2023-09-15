@@ -1,3 +1,4 @@
+import Trash from '../assets/Trash.svg'
 
 interface Disciplina {
     id?: string;
@@ -41,22 +42,22 @@ function Disciplina({ id, nome, nota, hidden }: Disciplina) {
 
     return (
         !hidden ? (
-            <div className="flex gap-5">
-                <div className={`w-40 h-36 rounded-normal flex flex-col ${getDiv()} p-2`}>
+            <div className="flex gap-5 justify-start items-start">
+                <div className={`w-40 h-32 rounded-normal flex flex-col ${getDiv()} p-2`}>
                     <p>{nome}</p>
-                    <p>Data</p>
-                    <label>{nota}</label>
+                    <p className='text-sm'>Data</p>
+                    <label className='text-sm' >{nota}</label>
                 </div>
-                <button onClick={handleDelete} className="w-1 h-1 bg-pint-text">Delete</button>
+                <img className='hover:cursor-pointer' src={Trash} onClick={handleDelete} ></img>
             </div>
         ) : (
-            <div className="flex gap-5">
-                <div className={`w-40 h-36 rounded-normal flex flex-col ${getDiv()} p-2`}>
+            <div className="flex gap-5 justify-start items-start">
+                <div className={`w-40 h-32 rounded-normal flex flex-col ${getDiv()} p-2`}>
                     <p></p>
                     <p></p>
                     <label></label>
                 </div>
-                <button className="w-1 h-1 bg-pint-text" style={{ visibility: 'hidden' }}/>
+                <img className='hover:cursor-pointer' src={Trash} style={{ visibility: 'hidden' }}/>
             </div>
         )
     );
