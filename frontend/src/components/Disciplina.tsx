@@ -5,9 +5,10 @@ interface Disciplina {
     nome?: string;
     nota?: number;
     hidden: boolean;
+    criadoEm?: string;
 }
 
-function Disciplina({ id, nome, nota, hidden }: Disciplina) {
+function Disciplina({ id, nome, nota, hidden, criadoEm }: Disciplina) {
     const getDiv = () => {
         switch (nome) {
             case 'Biologia':
@@ -45,7 +46,7 @@ function Disciplina({ id, nome, nota, hidden }: Disciplina) {
             <div className="flex gap-5 justify-start items-start">
                 <div className={`w-40 h-32 rounded-normal flex flex-col ${getDiv()} p-2`}>
                     <p>{nome}</p>
-                    <p className='text-sm'>Data</p>
+                    <p className='text-sm'>{criadoEm}</p>
                     <label className='text-sm' >{nota}</label>
                 </div>
                 <img className='hover:cursor-pointer' src={Trash} onClick={handleDelete} ></img>
