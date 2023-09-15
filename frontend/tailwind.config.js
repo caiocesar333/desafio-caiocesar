@@ -13,7 +13,7 @@ export default {
       }
     },
     screens: {
-      sm: '440px',
+      'sm': {'max': '390px'},
       normal:'1200px'
     },
     colors: {
