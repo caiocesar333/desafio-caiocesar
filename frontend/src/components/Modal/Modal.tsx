@@ -22,10 +22,15 @@ function Modal({ isOpen, onClose, num }: Modal) {
             2: 'SEGUNDO',
             3: 'TERCEIRO',
             4: 'QUARTO',
-          };
+        };
+
+        if (!selectedDisciplina) {
+            alert("Por favor, selecione uma disciplina antes de confirmar.");
+            return
+        }
         const currentDate = new Date().toISOString();
         const notaValue = inputValue === '' ? 6 : parseFloat(inputValue);
-        
+
         const payload = {
             bimestre: bimestreMap[num],
             disciplina: selectedDisciplina,
@@ -35,7 +40,6 @@ function Modal({ isOpen, onClose, num }: Modal) {
         };
         try {
             // POST the data to create new grade or PUT to update existing one.
-            // You would have logic here to decide whether to POST or PUT
             const response = await fetch('http://localhost:3333/resultados', {
                 method: 'POST',
                 headers: {
@@ -97,7 +101,7 @@ function Modal({ isOpen, onClose, num }: Modal) {
                 <div className="w-700 flex flex-col bg-background-primary">
                     <div className="flex justify-between m-5">
                         <p className="text-2xl">Bimestre {num}</p>
-                        <img className="hover:cursor-pointer" onClick={onClose}src={X}/>
+                        <img className="hover:cursor-pointer" onClick={onClose} src={X} />
                     </div>
                     <div className="flex flex-col m-5 gap-5">
                         <p>Disciplina</p>
