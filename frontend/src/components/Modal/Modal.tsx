@@ -24,10 +24,12 @@ function Modal({ isOpen, onClose, num }: Modal) {
             4: 'QUARTO',
           };
         const currentDate = new Date().toISOString();
+        const notaValue = inputValue === '' ? 6 : parseFloat(inputValue);
+        
         const payload = {
             bimestre: bimestreMap[num],
             disciplina: selectedDisciplina,
-            nota: parseFloat(inputValue),
+            nota: notaValue,
             criadoEm: currentDate,
             atualizadoEm: currentDate
         };
