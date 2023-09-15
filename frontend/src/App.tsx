@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Bimestre from './components/Bimestre';
 
 interface FetchedData {
+  id: string;
   bimestre: string;
   disciplina: string;
   nota: number;

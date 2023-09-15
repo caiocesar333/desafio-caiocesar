@@ -7,6 +7,7 @@ interface BimestreProps {
 }
 
 interface FetchedData {
+    id: string;
     bimestre: string;
     disciplina: string;
     nota: number;
@@ -26,25 +27,28 @@ function Bimestre({ num, data }: BimestreProps) {
 
     // Create a list to maintain the order of disciplines
     const disciplineOrder = ['Biologia', 'Artes', 'Geografia', 'Sociologia'];
-
     return (
         <div className='w-screen h-screen flex justify-center flex-col items-center gap-4'>
             <Titulo num={num} />
             <div className='w-3/6 flex gap-10'>
                 {disciplineOrder.map((discipline, index) => {
-                    // Find the corresponding data for this discipline
                     const item = filteredData.find(d => d.disciplina === discipline);
                     if (item) {
-                        return <Disciplina key={index} nome={item.disciplina} nota={item.nota} hidden={false}/>;
+                        return (
+                            <Disciplina
+                                key={index}
+                                id={item.id}  // Pass down the id
+                                nome={item.disciplina}
+                                nota={item.nota}
+                                hidden={false}
+                            />
+                        );
                     } else {
-                        // If no data for this discipline, display "N/A" or some other placeholder
-                        return <Disciplina key={index} hidden={true}/>;
+                        return <Disciplina key={index} hidden={true} />;
                     }
                 })}
             </div>
         </div>
     );
 }
-
-
-export default Bimestre;
+    export default Bimestre;
